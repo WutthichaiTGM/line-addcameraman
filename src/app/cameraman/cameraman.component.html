@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nayhoi Camera</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <script src="https://use.fontawesome.com/6e252eb4a7.js"></script>
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+</head>
+
+<body>
+  <nav class="navbar navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">
+      <img src="https://www.img.in.th/images/769cd09a2848c831bd1b0848d82df916.png" width="40x" alt=""> NAYHOI CAMERA
+    </a>
+  </nav>
+
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <br>
+    <h1 class="center">เพิ่มช่างภาพ</h1>
+    <div class="container-fluid">
+      <div class="center">
+        <div>
+          <mat-form-field appearance="outline" class="boxInput">
+            <mat-label>ชื่อ-สกุล</mat-label>
+            <input matInput type='text' formControlName="names" placeholder="">
+            <mat-icon matSuffix>account_box</mat-icon>
+          </mat-form-field>
+        </div>
+        <div class="box-container">
+          <mat-label>เพศ</mat-label>
+          <mat-radio-group formControlName="sex">
+            <mat-radio-button value="ชาย">ชาย</mat-radio-button>
+            <mat-radio-button value="หญิง">หญิง</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div>
+          <mat-form-field appearance="outline" class="boxInput">
+            <mat-label>อายุ</mat-label>
+            <input matInput type='text' formControlName="age" placeholder="">
+            <mat-icon matSuffix>elevator</mat-icon>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="outline" class="boxInput">
+            <mat-label>เบอร์โทรศัพท์</mat-label>
+            <input matInput type='text' formControlName="phoneNumber" placeholder="">
+            <mat-icon matSuffix>contact_phone</mat-icon>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="outline" class="boxInput">
+            <mat-label>รูปภาพ</mat-label>
+            <ngx-mat-file-input formControlName="images" placeholder="" (change)="onFileUpload($event.target.files)">
+            </ngx-mat-file-input>
+            <mat-icon matSuffix>folder</mat-icon>
+            <div class="progress" *ngIf="uploadPercentage$ | async as percentage">
+              <div class="progress-bar" [style.width]="percentage + '%'">
+                <div *ngIf="percentage < 100">
+                  {{percentage}}%
+                </div>
+                <div *ngIf="percentage == 100">
+                  successful
+                </div>
+              </div>
+            </div>
+          </mat-form-field>
+        </div>
+        <div>
+          <button type="submit" mat-raised-button color="primary" class="boxInput"
+            (click)='UploadStorage()'>Upload</button>
+          <!-- <button type="submit" mat-raised-button color="primary" class="boxInput" [disabled]="!profileForm.valid">ตกลง</button> -->
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
+  </script> -->
+
+</body>
+
+</html>
